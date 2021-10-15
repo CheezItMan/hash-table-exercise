@@ -31,7 +31,7 @@ class LinearProbingTable:
             return value
         index += 1 % len(self.table)
 
-        while index != start_index:
+        while index != start_index and self.table[index]:
             current_key, value = self.table[index]
             if current_key == key:
                 return value
