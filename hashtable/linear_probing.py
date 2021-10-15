@@ -35,7 +35,7 @@ class LinearProbingTable:
             current_key, value = self.table[index]
             if current_key == key:
                 return value
-            index += 1 % len(self.table)
+            index = (index + 1) % len(self.table)
 
         # Return default if we don't find the key.
         return default
