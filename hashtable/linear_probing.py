@@ -10,7 +10,14 @@ class LinearProbingTable:
         Insert `(key, value)` based on the hashed value of `key`.
         """
 
-        # TODO: Try to insert into self.table
+        index = hash(key) % len(self.table)
+
+        while self.table[index]:
+            index = (index + 1) % len(self.table)            
+        
+        self.table[index] = ( key, value )
+
+
 
         # If successful, increment.
         self.size += 1
@@ -31,11 +38,11 @@ class LinearProbingTable:
             return value
         index += 1 % len(self.table)
 
-        while index != start_index:
+        while index != start_index and self.table[index]:
             current_key, value = self.table[index]
             if current_key == key:
                 return value
-            index += 1 % len(self.table)
+            index = (index + 1) % len(self.table)
 
         # Return default if we don't find the key.
         return default
